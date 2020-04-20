@@ -10,3 +10,21 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+
+feign:
+  hystrix:
+    enabled: true
+
+#  在 Feign 模块中，单独设置这个超时时间不行，还要额外设置 Ribbon 的超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 15000
+
+ribbon:
+  ReadTimeout: 15000
+  ConnectTimeout: 15000
+
