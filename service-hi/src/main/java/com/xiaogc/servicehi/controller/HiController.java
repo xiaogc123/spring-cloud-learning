@@ -16,11 +16,6 @@ public class HiController {
     String port;
     @RequestMapping("hi")
     public Object home(@RequestParam(value = "name") String name){
-        try {
-            Thread.sleep(1000*11L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return "hi " + name + " ,i am from port:" + port;
     }
 }
