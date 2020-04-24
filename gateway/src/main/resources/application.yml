@@ -1,0 +1,8 @@
+
+#  指定了程序的spring的启动文件为after_route文件
+spring:
+  profiles:
+    active: route
+
+
+

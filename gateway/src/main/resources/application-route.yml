@@ -1,0 +1,34 @@
+
+server:
+  port: 8081
+
+#  配置spring cloud gateway 相关的配置
+spring:
+  profiles: route
+  cloud:
+    gateway:
+      routes:
+        #        - 每个router都需要一个唯一的id
+        - id: header_route
+          #          将请求路由到哪里
+          uri: http://httpbin.org:80/get
+          #          会被解析成PredicateDefinition对象 （name =After ，args= 2017-01-20T17:42:47.789-07:00[America/Denver]）
+          #          当请求的时间在这个配置的时间之后，请求会被路由到http://httpbin.org:80/get
+          predicates:
+            - Header=X-Request-Id, \d+
+#所有的请求路径满足/foo/{segment}的请求将会匹配并被路由，比如/foo/1 、/foo/bar的请求，将会命中匹配，并成功转发
+        - id: path_route
+          uri: http://httpbin.org:80/get
+          predicates:
+            - Path=/foo/{segment}
+
+#请求带有cookie名为 name, cookie值为forezp 的请求将都会转发到uri为 http://httpbin.org:80/get的地址上
+        - id: cookie_route
+          uri: http://httpbin.org:80/get
+          predicates:
+            - Cookie=name, forezp
+#配置了请求中含有参数foo，并且foo的值匹配ba.，则请求命中路由，比如一个请求中含有参数名为foo，值的为bar，能够被正确路由转发
+        - id: query_route
+          uri: http://httpbin.org:80/get
+          predicates:
+            - Query=foo, ba.
