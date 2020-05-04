@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @Author xiaogc
  * @Date 2020/5/4
  */
-@FeignClient(name = "account-service")
+@FeignClient(value = "account-service")
 public interface AccountServiceFeignClient {
 
     @PostMapping("/account/reduce-balance")

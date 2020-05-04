@@ -17,25 +17,13 @@ spring:
       discovery:
         server-addr: 127.0.0.1:8848
 
-# Seata 配置项，对应 SeataProperties 类
-seata:
-  application-id: ${spring.application.name} # Seata 应用编号，默认为 ${spring.application.name}
-  tx-service-group: ${spring.application.name}-group # Seata 事务组编号，用于 TC 集群名
-  # Seata 服务配置项，对应 ServiceProperties 类
-  service:
-    # 虚拟组和分组的映射
-    vgroup-mapping:
-      order-service-group: default
+    alibaba:
+      seata:
+        # 自定义事务组名称需要与seata-server中的对应
+        tx-service-group: fsp_tx_group
 
-    # 分组和 Seata 服务的映射
-#    grouplist:
-#      default: 127.0.0.1:8091
-  # Seata 注册中心配置项，对应 RegistryProperties 类
-  registry:
-    type: nacos # 注册中心类型，默认为 file
-    nacos:
-      cluster: default # 使用的 Seata 分组
-      namespace: # Nacos 命名空间
-      serverAddr: 127.0.0.1:8848 # Nacos 服务地址
+feign:
+  hystrix:
+    enabled: false
 mybatis:
   mapper-locations: classpath*:mapper/*.xml

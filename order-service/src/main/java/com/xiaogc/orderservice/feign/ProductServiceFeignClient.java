@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @Author xiaogc
  * @Date 2020/5/4
  */
-@FeignClient(name = "product-service")
+@FeignClient(value = "product-service")
 public interface ProductServiceFeignClient {
 
     @PostMapping("/product/reduce-stock")

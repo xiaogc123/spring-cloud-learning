@@ -35,7 +35,7 @@ public class OrderServiceImpl implements OrderService {
      * @return 返回订单编号
      */
     @Override
-    @GlobalTransactional
+    @GlobalTransactional(name = "fsp_tx_group", rollbackFor = Exception.class)
     public Integer createOrder(Long userId, Long productId, Integer price) {
         // 购买数量，暂时设置为 1。
         Integer amount = 1;
