@@ -1,12 +1,12 @@
 server:
-  port: 9083 # 端口
+  port: 9081 # 端口
 
 spring:
   application:
-    name: account-service
+    name: order-service
 
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/seata_amount?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+    url: jdbc:mysql://127.0.0.1:3306/seata_order?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
@@ -17,7 +17,6 @@ spring:
       discovery:
         server-addr: 127.0.0.1:8848
 
-
 # Seata 配置项，对应 SeataProperties 类
 seata:
   application-id: ${spring.application.name} # Seata 应用编号，默认为 ${spring.application.name}
@@ -26,7 +25,7 @@ seata:
   service:
     # 虚拟组和分组的映射
     vgroup-mapping:
-      account-service-group: default
+      order-service-group: default
   # Seata 注册中心配置项，对应 RegistryProperties 类
   registry:
     type: nacos # 注册中心类型，默认为 file
